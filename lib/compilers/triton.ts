@@ -1,40 +1,13 @@
-// Copyright (c) 2023, Simon Boehm
-// All rights reserved.
-//
-// Redistribution and use in source and binary forms, with or without
-// modification, are permitted provided that the following conditions are met:
-//
-//     * Redistributions of source code must retain the above copyright notice,
-//       this list of conditions and the following disclaimer.
-//     * Redistributions in binary form must reproduce the above copyright
-//       notice, this list of conditions and the following disclaimer in the
-//       documentation and/or other materials provided with the distribution.
-//
-// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-// POSSIBILITY OF SUCH DAMAGE.
-
 import type {CompilationInfo} from '../../types/compilation/compilation.interfaces.js';
+import Semver from 'semver';
 import type {PreliminaryCompilerInfo} from '../../types/compiler.interfaces.js';
 import type {ParseFiltersAndOutputOptions} from '../../types/features/filters.interfaces.js';
 import {BaseCompiler} from '../base-compiler.js';
-import {asSafeVer} from '../utils.js';
 import {SassAsmParser} from '../parsers/asm-parser-sass.js';
-
-import Semver from 'semver';
+import {asSafeVer} from '../utils.js';
 import {unwrap} from '../assert.js';
-
 import * as fs from 'fs/promises';
 import Path from 'path';
-
 import {BaseParser} from './argument-parsers.js';
 
 export class TritonCompiler extends BaseCompiler {
@@ -54,8 +27,20 @@ export class TritonCompiler extends BaseCompiler {
     }
 
     override optionsForFilter(filters: ParseFiltersAndOutputOptions, outputFilename: string) {
-        return ['-I', this.compileScriptPath, '--out-path', outputFilename];
-    }
+    
+return [
+            '-I',
+            this.compileScriptPath,
+            '--kernel-name',
+            'kernel',
+            '--grid',
+            'M/16, 1, 1',
+            '--signature',
+            '*fp32:16, *fp16:16, *fp16:16, i32, 1024',
+            '--out-path',
+            outputFilename,
+        ];
+}
 
     async nvdisasm(outputFilename: string, result: any, maxOutput: number) {
         // Read the content of output .c file

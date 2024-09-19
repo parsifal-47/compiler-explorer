@@ -365,6 +365,12 @@
         - 'lib/compilers/triton.ts'
         - 'etc/config/triton.*.properties'
 
+'lang-regex':
+  - changed-files:
+      - any-glob-to-any-file:
+        - 'lib/compilers/regex.ts'
+        - 'etc/config/regex.*.properties'
+
 'lang-typescript':
   - changed-files:
       - any-glob-to-any-file:

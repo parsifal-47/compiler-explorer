@@ -749,6 +749,17 @@ const definitions: Record<LanguageKey, LanguageDefinition> = {
         previewFilter: null,
         monacoDisassembly: null,
     },
+    regex: {
+        name: 'Regex',
+        monaco: 'regex',
+        extensions: ['.pat'],
+        alias: [],
+        logoUrl: 'regex.png',
+        logoUrlDark: null,
+        formatter: null,
+        previewFilter: null,
+        monacoDisassembly: null,
+    },
     typescript: {
         name: 'TypeScript Native',
         monaco: 'typescript',

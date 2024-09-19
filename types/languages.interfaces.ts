@@ -78,6 +78,7 @@ export type LanguageKey =
     | 'pony'
     | 'python'
     | 'racket'
+    | 'regex'
     | 'ruby'
     | 'rust'
     | 'scala'
