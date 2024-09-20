@@ -60,6 +60,7 @@ export {
     DotNetMonoCompiler,
     DotNetNativeAotCompiler,
 } from './dotnet.js';
+export {DpuregexCompiler} from './dpuregex.js';
 export {EDGCompiler} from './edg.js';
 export {EllccCompiler} from './ellcc.js';
 export {ElixirCompiler} from './elixir.js';
@@ -113,7 +114,6 @@ export {PythonCompiler} from './python.js';
 export {PythranCompiler} from './pythran.js';
 export {R8Compiler} from './r8.js';
 export {RacketCompiler} from './racket.js';
-export {DpuregexCompiler} from './dpuregex.js';
 export {RGACompiler} from './rga.js';
 export {RubyCompiler} from './ruby.js';
 export {RustcCgGCCCompiler} from './rustc-cg-gcc.js';

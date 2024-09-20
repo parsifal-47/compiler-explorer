@@ -751,7 +751,7 @@ const definitions: Record<LanguageKey, LanguageDefinition> = {
     },
     dpuregex: {
         name: 'DPU Regex',
-        monaco: 'dpuregex',
+        monaco: 'python',
         extensions: ['.pat'],
         alias: [],
         logoUrl: 'regex.png',
