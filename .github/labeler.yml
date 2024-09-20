@@ -365,6 +365,12 @@
         - 'lib/compilers/triton.ts'
         - 'etc/config/triton.*.properties'
 
+'lang-tritonmaia':
+  - changed-files:
+      - any-glob-to-any-file:
+        - 'lib/compilers/tritonmaia.ts'
+        - 'etc/config/tritonmaia.*.properties'
+
 'lang-dpuregex':
   - changed-files:
       - any-glob-to-any-file:

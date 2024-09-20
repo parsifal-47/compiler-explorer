@@ -22,33 +22,28 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-import path from 'path';
-import type {PreliminaryCompilerInfo} from '../../types/compiler.interfaces.js';
-
 import type {ParseFiltersAndOutputOptions} from '../../types/features/filters.interfaces.js';
 import {BaseCompiler} from '../base-compiler.js';
-
+import type {PreliminaryCompilerInfo} from '../../types/compiler.interfaces.js';
 import {ErlangParser} from './argument-parsers.js';
 
 export class DpuregexCompiler extends BaseCompiler {
-    constructor(compilerInfo: PreliminaryCompilerInfo, env) {
-        super(compilerInfo, env);
-    }
+    private readonly targetChip: string;
 
     static get key() {
         return 'dpuregex';
     }
 
+    constructor(compilerInfo: PreliminaryCompilerInfo, env) {
+        super(compilerInfo, env);
+        this.targetChip = this.compilerProps<string>(`compiler.${this.compiler.id}.targetChip`);
+    }
+
     override optionsForFilter(filters: ParseFiltersAndOutputOptions, outputFilename: string): string[] {
         return [
-            '-noshell',
-            '-eval',
-            '{ok, Input} = init:get_argument(input),' +
-                "{ok, _, Output} = compile:file(Input, ['S', binary, no_line_info, report])," +
-                `{ok,Fd} = file:open("${outputFilename}", [write]),` +
-                'beam_listing:module(Fd, Output),' +
-                'file:close(Fd),' +
-                'halt().',
+            '-t',
+            this.targetChip,
+            '-z', outputFilename
         ];
     }
 
@@ -62,13 +57,13 @@ export class DpuregexCompiler extends BaseCompiler {
         userOptions: string[],
         staticLibLinks: string[],
     ): string[] {
-        options.push('-input', inputFilename);
+        options.push('-r', inputFilename);
         return options.concat(libIncludes, libOptions, libPaths, libLinks, userOptions, staticLibLinks);
     }
 
-    override getOutputFilename(dirPath: string, outputFilebase: string): string {
+/*    override getOutputFilename(dirPath: string, outputFilebase: string): string {
         return path.join(dirPath, `${outputFilebase}.S`);
-    }
+    }*/
 
     override getArgumentParser() {
         return ErlangParser;
