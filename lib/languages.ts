@@ -749,9 +749,9 @@ const definitions: Record<LanguageKey, LanguageDefinition> = {
         previewFilter: null,
         monacoDisassembly: null,
     },
-    regex: {
-        name: 'Regex',
-        monaco: 'regex',
+    dpuregex: {
+        name: 'DPU Regex',
+        monaco: 'dpuregex',
         extensions: ['.pat'],
         alias: [],
         logoUrl: 'regex.png',

@@ -29,9 +29,9 @@ import {BaseCompiler} from '../base-compiler.js';
 
 import {ErlangParser} from './argument-parsers.js';
 
-export class RegexCompiler extends BaseCompiler {
+export class DpuregexCompiler extends BaseCompiler {
     static get key() {
-        return 'regex';
+        return 'dpuregex';
     }
 
     override optionsForFilter(filters: ParseFiltersAndOutputOptions, outputFilename: string): string[] {

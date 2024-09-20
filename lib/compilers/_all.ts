@@ -113,7 +113,7 @@ export {PythonCompiler} from './python.js';
 export {PythranCompiler} from './pythran.js';
 export {R8Compiler} from './r8.js';
 export {RacketCompiler} from './racket.js';
-export {RegexCompiler} from './regex.js';
+export {DpuregexCompiler} from './dpuregex.js';
 export {RGACompiler} from './rga.js';
 export {RubyCompiler} from './ruby.js';
 export {RustcCgGCCCompiler} from './rustc-cg-gcc.js';
